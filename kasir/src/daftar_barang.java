@@ -32,6 +32,7 @@ public class daftar_barang extends javax.swing.JFrame {
         update_barang = new javax.swing.JButton();
         delete_barang = new javax.swing.JButton();
         kembali = new javax.swing.JButton();
+        tambah = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 102, 255));
@@ -92,7 +93,7 @@ public class daftar_barang extends javax.swing.JFrame {
         daftar_barang.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
         daftar_barang.setText("DAFTAR BARANG");
 
-        update_barang.setBackground(new java.awt.Color(0, 51, 255));
+        update_barang.setBackground(new java.awt.Color(51, 153, 255));
         update_barang.setText("Update");
 
         delete_barang.setBackground(new java.awt.Color(255, 0, 0));
@@ -106,26 +107,36 @@ public class daftar_barang extends javax.swing.JFrame {
             }
         });
 
+        tambah.setBackground(new java.awt.Color(0, 204, 0));
+        tambah.setText("Tambah");
+        tambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tambahActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(kembali)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(delete_barang)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(update_barang))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(112, 112, 112)
                             .addComponent(daftar_barang))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(28, 28, 28)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(kembali)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tambah)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(update_barang)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(delete_barang)))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -137,10 +148,11 @@ public class daftar_barang extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(update_barang)
                     .addComponent(delete_barang)
-                    .addComponent(kembali))
-                .addContainerGap(34, Short.MAX_VALUE))
+                    .addComponent(kembali)
+                    .addComponent(tambah)
+                    .addComponent(update_barang))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
@@ -150,6 +162,11 @@ public class daftar_barang extends javax.swing.JFrame {
         // TODO add your handling code here:
         new main().setVisible(true);
     }//GEN-LAST:event_kembaliActionPerformed
+
+    private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
+    new tambah_barang().setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tambahActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,6 +209,7 @@ public class daftar_barang extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton kembali;
+    private javax.swing.JButton tambah;
     private javax.swing.JButton update_barang;
     // End of variables declaration//GEN-END:variables
 }
