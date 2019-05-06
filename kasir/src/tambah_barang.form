@@ -30,25 +30,28 @@
                       <Component id="labeltambah" min="-2" pref="98" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="idbarang2" alignment="0" max="32767" attributes="0"/>
-                          <Component id="idbarang" alignment="0" max="32767" attributes="0"/>
-                          <Component id="nama_barang" alignment="0" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="idbarang2" alignment="0" max="32767" attributes="0"/>
+                              <Component id="idbarang" alignment="0" max="32767" attributes="0"/>
+                              <Component id="nama_barang" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="harga" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="tabel_id_barang" max="32767" attributes="0"/>
-                          <Component id="field_nama_barang" max="32767" attributes="0"/>
-                          <Component id="combo_jenis_barang" alignment="0" pref="109" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jButton1" min="-2" pref="83" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="harga_barang" max="32767" attributes="0"/>
+                              <Component id="tabel_id_barang" max="32767" attributes="0"/>
+                              <Component id="field_nama_barang" max="32767" attributes="0"/>
+                              <Component id="combo_jenis_barang" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="83" max="-2" attributes="0"/>
-                  </Group>
               </Group>
-              <EmptySpace pref="138" max="32767" attributes="0"/>
+              <EmptySpace pref="95" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -72,9 +75,14 @@
                   <Component id="idbarang2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="combo_jenis_barang" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="harga_barang" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="harga" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="85" max="32767" attributes="0"/>
+              <EmptySpace pref="57" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -123,6 +131,13 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JTextField" name="harga_barang">
+    </Component>
+    <Component class="javax.swing.JLabel" name="harga">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="HARGA BARANG :"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
