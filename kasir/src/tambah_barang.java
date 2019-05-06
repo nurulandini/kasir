@@ -36,22 +36,41 @@ public class tambah_barang extends javax.swing.JFrame {
         combo_jenis_barang = new javax.swing.JComboBox<>();
         harga_barang = new javax.swing.JTextField();
         harga = new javax.swing.JLabel();
+        KEMBALI = new javax.swing.JButton();
+        stock = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         labeltambah.setText("TAMBAH BARANG");
 
+        jButton1.setBackground(new java.awt.Color(102, 153, 255));
         jButton1.setText("TAMBAH");
 
-        idbarang.setText("ID BARANG         :");
+        idbarang.setText("ID BARANG          :");
 
-        nama_barang.setText("NAMA BARANG   :");
+        nama_barang.setText("NAMA BARANG    :");
 
-        idbarang2.setText("JENIS BARANG   :");
+        idbarang2.setText("JENIS BARANG    :");
 
         combo_jenis_barang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        harga.setText("HARGA BARANG :");
+        harga.setText("HARGA BARANG  :");
+
+        KEMBALI.setText("KEMBALI");
+        KEMBALI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KEMBALIActionPerformed(evt);
+            }
+        });
+
+        stock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stockActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("JUMLAH BARANG :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,16 +88,21 @@ public class tambah_barang extends javax.swing.JFrame {
                                 .addComponent(idbarang2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(idbarang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(nama_barang, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(harga))
+                            .addComponent(harga)
+                            .addComponent(jLabel1))
                         .addGap(42, 42, 42)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(harga_barang)
-                                .addComponent(tabel_id_barang)
-                                .addComponent(field_nama_barang)
-                                .addComponent(combo_jenis_barang, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(95, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(stock)
+                            .addComponent(harga_barang)
+                            .addComponent(tabel_id_barang)
+                            .addComponent(field_nama_barang)
+                            .addComponent(combo_jenis_barang, 0, 109, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(113, 113, 113)
+                        .addComponent(KEMBALI)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,13 +125,27 @@ public class tambah_barang extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(harga_barang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(harga))
-                .addGap(34, 34, 34)
-                .addComponent(jButton1)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(stock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(KEMBALI))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void KEMBALIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KEMBALIActionPerformed
+    new daftar_barang().setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_KEMBALIActionPerformed
+
+    private void stockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stockActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_stockActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,6 +184,7 @@ public class tambah_barang extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton KEMBALI;
     private javax.swing.JComboBox<String> combo_jenis_barang;
     private javax.swing.JTextField field_nama_barang;
     private javax.swing.JLabel harga;
@@ -153,8 +192,10 @@ public class tambah_barang extends javax.swing.JFrame {
     private javax.swing.JLabel idbarang;
     private javax.swing.JLabel idbarang2;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labeltambah;
     private javax.swing.JLabel nama_barang;
+    private javax.swing.JTextField stock;
     private javax.swing.JTextField tabel_id_barang;
     // End of variables declaration//GEN-END:variables
 }

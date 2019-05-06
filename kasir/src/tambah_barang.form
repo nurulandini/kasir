@@ -38,20 +38,25 @@
                               <Component id="nama_barang" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="harga" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButton1" min="-2" pref="83" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="harga_barang" max="32767" attributes="0"/>
-                              <Component id="tabel_id_barang" max="32767" attributes="0"/>
-                              <Component id="field_nama_barang" max="32767" attributes="0"/>
-                              <Component id="combo_jenis_barang" alignment="0" min="-2" pref="109" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="stock" max="32767" attributes="0"/>
+                          <Component id="harga_barang" max="32767" attributes="0"/>
+                          <Component id="tabel_id_barang" max="32767" attributes="0"/>
+                          <Component id="field_nama_barang" max="32767" attributes="0"/>
+                          <Component id="combo_jenis_barang" alignment="0" pref="109" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
+                      <Component id="KEMBALI" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" pref="83" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="95" max="32767" attributes="0"/>
+              <EmptySpace pref="91" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -80,9 +85,17 @@
                   <Component id="harga_barang" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="harga" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="57" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="stock" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="KEMBALI" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="32" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -95,24 +108,27 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="66" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="TAMBAH"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="idbarang">
       <Properties>
-        <Property name="text" type="java.lang.String" value="ID BARANG         :"/>
+        <Property name="text" type="java.lang.String" value="ID BARANG          :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tabel_id_barang">
     </Component>
     <Component class="javax.swing.JLabel" name="nama_barang">
       <Properties>
-        <Property name="text" type="java.lang.String" value="NAMA BARANG   :"/>
+        <Property name="text" type="java.lang.String" value="NAMA BARANG    :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="idbarang2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="JENIS BARANG   :"/>
+        <Property name="text" type="java.lang.String" value="JENIS BARANG    :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="field_nama_barang">
@@ -136,7 +152,25 @@
     </Component>
     <Component class="javax.swing.JLabel" name="harga">
       <Properties>
-        <Property name="text" type="java.lang.String" value="HARGA BARANG :"/>
+        <Property name="text" type="java.lang.String" value="HARGA BARANG  :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="KEMBALI">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="KEMBALI"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KEMBALIActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="stock">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="stockActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="JUMLAH BARANG :"/>
       </Properties>
     </Component>
   </SubComponents>

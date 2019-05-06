@@ -94,13 +94,13 @@ public class daftar_barang extends javax.swing.JFrame {
         daftar_barang.setText("DAFTAR BARANG");
 
         update_barang.setBackground(new java.awt.Color(51, 153, 255));
-        update_barang.setText("Update");
+        update_barang.setText("UBAH");
 
         delete_barang.setBackground(new java.awt.Color(255, 0, 0));
         delete_barang.setText("Delete");
 
         kembali.setBackground(new java.awt.Color(204, 204, 204));
-        kembali.setText("Back");
+        kembali.setText("KEMBALI");
         kembali.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kembaliActionPerformed(evt);
@@ -108,7 +108,7 @@ public class daftar_barang extends javax.swing.JFrame {
         });
 
         tambah.setBackground(new java.awt.Color(0, 204, 0));
-        tambah.setText("Tambah");
+        tambah.setText("TAMBAH");
         tambah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tambahActionPerformed(evt);
