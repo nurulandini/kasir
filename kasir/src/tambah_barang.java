@@ -39,6 +39,8 @@ public class tambah_barang extends javax.swing.JFrame {
         KEMBALI = new javax.swing.JButton();
         stock = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        distributor = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,15 +49,19 @@ public class tambah_barang extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(102, 153, 255));
         jButton1.setText("TAMBAH");
 
-        idbarang.setText("ID BARANG          :");
+        idbarang.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        idbarang.setText("Id barang             :");
 
-        nama_barang.setText("NAMA BARANG    :");
+        nama_barang.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        nama_barang.setText("Nama barang       :");
 
-        idbarang2.setText("JENIS BARANG    :");
+        idbarang2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        idbarang2.setText("Jenis barang        :");
 
         combo_jenis_barang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        harga.setText("HARGA BARANG  :");
+        harga.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        harga.setText("Harga barang       :");
 
         KEMBALI.setText("KEMBALI");
         KEMBALI.addActionListener(new java.awt.event.ActionListener() {
@@ -70,7 +76,11 @@ public class tambah_barang extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("JUMLAH BARANG :");
+        jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel1.setText("Jumlah barang      :");
+
+        jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel2.setText("Distributor             :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,20 +99,22 @@ public class tambah_barang extends javax.swing.JFrame {
                                 .addComponent(idbarang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(nama_barang, javax.swing.GroupLayout.Alignment.LEADING))
                             .addComponent(harga)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
                         .addGap(42, 42, 42)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(stock)
                             .addComponent(harga_barang)
                             .addComponent(tabel_id_barang)
                             .addComponent(field_nama_barang)
-                            .addComponent(combo_jenis_barang, 0, 109, Short.MAX_VALUE)))
+                            .addComponent(combo_jenis_barang, 0, 109, Short.MAX_VALUE)
+                            .addComponent(distributor)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(113, 113, 113)
                         .addComponent(KEMBALI)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,18 +141,22 @@ public class tambah_barang extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(stock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(21, 21, 21)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(distributor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(KEMBALI))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void KEMBALIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KEMBALIActionPerformed
-    new daftar_barang().setVisible(true);        // TODO add your handling code here:
+    new main().setVisible(true);       // TODO add your handling code here:
     }//GEN-LAST:event_KEMBALIActionPerformed
 
     private void stockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stockActionPerformed
@@ -186,6 +202,7 @@ public class tambah_barang extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton KEMBALI;
     private javax.swing.JComboBox<String> combo_jenis_barang;
+    private javax.swing.JTextField distributor;
     private javax.swing.JTextField field_nama_barang;
     private javax.swing.JLabel harga;
     private javax.swing.JTextField harga_barang;
@@ -193,6 +210,7 @@ public class tambah_barang extends javax.swing.JFrame {
     private javax.swing.JLabel idbarang2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel labeltambah;
     private javax.swing.JLabel nama_barang;
     private javax.swing.JTextField stock;

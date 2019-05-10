@@ -141,6 +141,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Kasir"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="kasirActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="beli">
       <Properties>
@@ -149,6 +152,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Pembelian"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="beliActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="pemasok">
       <Properties>

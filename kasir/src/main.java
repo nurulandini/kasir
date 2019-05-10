@@ -56,9 +56,19 @@ public class main extends javax.swing.JFrame {
 
         kasir.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         kasir.setText("Kasir");
+        kasir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kasirActionPerformed(evt);
+            }
+        });
 
         beli.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         beli.setText("Pembelian");
+        beli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                beliActionPerformed(evt);
+            }
+        });
 
         pemasok.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         pemasok.setText("Pemasok");
@@ -155,6 +165,16 @@ public class main extends javax.swing.JFrame {
         // TODO add your handling code here:
     new daftar_barang().setVisible(true);
     }//GEN-LAST:event_daftar_barangActionPerformed
+
+    private void kasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kasirActionPerformed
+        // TODO add your handling code here:
+        new kasir_view().setVisible(true);
+    }//GEN-LAST:event_kasirActionPerformed
+
+    private void beliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beliActionPerformed
+        new tambah_barang().setVisible(true);   
+// TODO add your handling code here:
+    }//GEN-LAST:event_beliActionPerformed
 
     /**
      * @param args the command line arguments
