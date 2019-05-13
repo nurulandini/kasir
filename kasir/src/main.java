@@ -77,6 +77,11 @@ public class main extends javax.swing.JFrame {
 
         pemasok.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         pemasok.setText("Pemasok");
+        pemasok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pemasokActionPerformed(evt);
+            }
+        });
 
         faktur.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         faktur.setText("Faktur");
@@ -196,6 +201,11 @@ public class main extends javax.swing.JFrame {
         // TODO add your handling code here:
         new daftar_transaksi().setVisible(true);
     }//GEN-LAST:event_TransaksiActionPerformed
+
+    private void pemasokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pemasokActionPerformed
+        // TODO add your handling code here:
+        new pemasok().setVisible(true);
+    }//GEN-LAST:event_pemasokActionPerformed
 
     /**
      * @param args the command line arguments
