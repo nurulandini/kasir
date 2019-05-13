@@ -45,7 +45,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="faktur" max="32767" attributes="0"/>
-                                  <Component id="jButton1" pref="115" max="32767" attributes="0"/>
+                                  <Component id="Transaksi" pref="115" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -92,7 +92,7 @@
                   <Component id="tanggal" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="date" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="27" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="faktur" max="32767" attributes="0"/>
                   <Component id="kasir" max="32767" attributes="0"/>
@@ -102,9 +102,9 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="pemasok" max="32767" attributes="0"/>
                   <Component id="beli" max="32767" attributes="0"/>
-                  <Component id="jButton1" min="-2" pref="48" max="-2" attributes="0"/>
+                  <Component id="Transaksi" min="-2" pref="48" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace pref="75" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -122,6 +122,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Keluar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="keluarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="daftar_barang">
       <Properties>
@@ -172,13 +175,16 @@
         <Property name="text" type="java.lang.String" value="Faktur"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="Transaksi">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Rounded MT Bold" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Kategori"/>
+        <Property name="text" type="java.lang.String" value="Transaksi"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TransaksiActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="nama">
       <Properties>

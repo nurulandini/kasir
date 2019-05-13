@@ -33,7 +33,7 @@ public class main extends javax.swing.JFrame {
         beli = new javax.swing.JButton();
         pemasok = new javax.swing.JButton();
         faktur = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        Transaksi = new javax.swing.JButton();
         nama = new javax.swing.JLabel();
         username = new javax.swing.JLabel();
         tanggal = new javax.swing.JLabel();
@@ -45,6 +45,11 @@ public class main extends javax.swing.JFrame {
         jLabel1.setText(" FANUTRI SWALAYAN");
 
         keluar.setText("Keluar");
+        keluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                keluarActionPerformed(evt);
+            }
+        });
 
         daftar_barang.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         daftar_barang.setText("Daftar Barang");
@@ -76,8 +81,13 @@ public class main extends javax.swing.JFrame {
         faktur.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         faktur.setText("Faktur");
 
-        jButton1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jButton1.setText("Kategori");
+        Transaksi.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        Transaksi.setText("Transaksi");
+        Transaksi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TransaksiActionPerformed(evt);
+            }
+        });
 
         nama.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         nama.setText("Nama     : ");
@@ -114,7 +124,7 @@ public class main extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(faktur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)))
+                                    .addComponent(Transaksi, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -145,7 +155,7 @@ public class main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tanggal)
                     .addComponent(date))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGap(72, 72, 72)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(faktur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(kasir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -154,8 +164,8 @@ public class main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pemasok, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(beli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27))
+                    .addComponent(Transaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         pack();
@@ -175,6 +185,16 @@ public class main extends javax.swing.JFrame {
         new tambah_barang().setVisible(true);   
 // TODO add your handling code here:
     }//GEN-LAST:event_beliActionPerformed
+
+    private void keluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keluarActionPerformed
+        // TODO add your handling code here:
+        new login().setVisible(true);
+    }//GEN-LAST:event_keluarActionPerformed
+
+    private void TransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransaksiActionPerformed
+        // TODO add your handling code here:
+        new daftar_barang().setVisible(true);
+    }//GEN-LAST:event_TransaksiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,11 +232,11 @@ public class main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Transaksi;
     private javax.swing.JButton beli;
     private javax.swing.JButton daftar_barang;
     private javax.swing.JLabel date;
     private javax.swing.JButton faktur;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton kasir;
     private javax.swing.JButton keluar;

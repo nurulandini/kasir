@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -96,7 +99,15 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginbuttonActionPerformed
-    new main().setVisible(true);   // TODO add your handling code here:
+     String katasandi = new String(pass.getPassword());
+     if ((id_pegawai.getText().equals("171402046"))&&(katasandi.equals("nurul12"))){
+         JOptionPane.showMessageDialog(this,"Anda Berhasil Login!", "Pesan",JOptionPane.INFORMATION_MESSAGE );
+         new main().setVisible(true);
+         this.dispose();
+     }
+     else{
+         JOptionPane.showMessageDialog(this,"Maaf tidak berhasil login","Pesan",JOptionPane.INFORMATION_MESSAGE);
+     }   // TODO add your handling code here:
     }//GEN-LAST:event_loginbuttonActionPerformed
 
     /**
