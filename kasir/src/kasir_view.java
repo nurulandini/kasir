@@ -44,6 +44,8 @@ public class kasir_view extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        bersih = new javax.swing.JButton();
+        selesai = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -151,6 +153,14 @@ public class kasir_view extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel12.setText("<nama_pegawai_kasir>");
 
+        bersih.setBackground(new java.awt.Color(0, 153, 0));
+        bersih.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        bersih.setText("Bersihkan Layar");
+
+        selesai.setBackground(new java.awt.Color(0, 153, 255));
+        selesai.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        selesai.setText("Selesai");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -190,7 +200,11 @@ public class kasir_view extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1))
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bersih)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(selesai))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
@@ -238,7 +252,9 @@ public class kasir_view extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(bersih)
+                    .addComponent(selesai))
                 .addContainerGap())
         );
 
@@ -254,7 +270,8 @@ public class kasir_view extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-            new main().setVisible(true);
+        this.setVisible(false);
+        new main().setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -295,6 +312,7 @@ public class kasir_view extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bayar;
+    private javax.swing.JButton bersih;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -312,5 +330,6 @@ public class kasir_view extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable kasir;
     private javax.swing.JTextField kode_barang;
+    private javax.swing.JButton selesai;
     // End of variables declaration//GEN-END:variables
 }

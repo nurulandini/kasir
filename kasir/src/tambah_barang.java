@@ -177,7 +177,8 @@ public class tambah_barang extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void KEMBALIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KEMBALIActionPerformed
-    new main().setVisible(true);       // TODO add your handling code here:
+        this.setVisible(false);
+        new main().setVisible(true);       // TODO add your handling code here:
     }//GEN-LAST:event_KEMBALIActionPerformed
 
     private void stockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stockActionPerformed

@@ -181,6 +181,7 @@ public class daftar_barang extends javax.swing.JFrame {
 
     private void kembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembaliActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
         new main().setVisible(true);
     }//GEN-LAST:event_kembaliActionPerformed
 
