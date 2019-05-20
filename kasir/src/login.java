@@ -1,4 +1,4 @@
-
+import java.sql.*;
 import javax.swing.JOptionPane;
 
 /*
@@ -106,15 +106,45 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginbuttonActionPerformed
-     String katasandi = new String(pass.getPassword());
-     if ((id_pegawai.getText().equals("171402046"))&&(katasandi.equals("nurul12"))){
-         JOptionPane.showMessageDialog(this,"Anda Berhasil Login!", "Pesan",JOptionPane.INFORMATION_MESSAGE );
-         new main().setVisible(true);
-         this.dispose();
-     }
-     else{
-         JOptionPane.showMessageDialog(this,"Maaf tidak berhasil login","Pesan",JOptionPane.INFORMATION_MESSAGE);
-     }   // TODO add your handling code here:
+     String kataSandi = new String(pass.getPassword());
+        Statement stmt = null;
+        ResultSet rs = null;
+        Connection conn = null;
+        
+        try{
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/kasir?" + "user=root&password=");
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT COUNT(*) FROM pegawai WHERE id = '"+id_pegawai.getText()+"'and Password='"+kataSandi+"'");
+            rs = stmt.getResultSet();
+            rs.next();
+            int ada = rs.getInt(1);
+            if(ada==0){
+                JOptionPane.showMessageDialog(this,"Username atau Password salah!","Error Login!",JOptionPane.ERROR_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(this,"Berhasil Login","Login",JOptionPane.INFORMATION_MESSAGE);
+            new main().setVisible(true);
+            this.dispose();
+            }
+        }
+        catch(SQLException ex){
+            System.out.println("SQLException: "+ ex.getMessage());
+            System.out.println("SQLState: "+ ex.getSQLState());
+            System.out.println("VendorError: "+ex.getErrorCode());
+        }
+        finally{
+            if(rs !=null){
+                try{
+                    rs.close();
+                }catch (SQLException sqlEx){}
+                rs = null;
+            }
+            if(stmt !=null){
+                try{
+                    stmt.close();
+                }catch(SQLException sqlEx){}
+                stmt = null;
+            }
+        }
     }//GEN-LAST:event_loginbuttonActionPerformed
 
     /**
