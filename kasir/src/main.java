@@ -10,6 +10,9 @@
  */
 public class main extends javax.swing.JFrame {
 
+        String nama;
+        login nama_lengkap = new login();
+        
     /**
      * Creates new form main
      */
@@ -30,7 +33,7 @@ public class main extends javax.swing.JFrame {
         keluar = new javax.swing.JButton();
         daftar_barang = new javax.swing.JButton();
         kasir = new javax.swing.JButton();
-        beli = new javax.swing.JButton();
+        exp = new javax.swing.JButton();
         pemasok = new javax.swing.JButton();
         faktur = new javax.swing.JButton();
         Transaksi = new javax.swing.JButton();
@@ -39,7 +42,7 @@ public class main extends javax.swing.JFrame {
         tanggal = new javax.swing.JLabel();
         date = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText(" FANUTRI SWALAYAN");
@@ -67,11 +70,11 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        beli.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        beli.setText("Pembelian");
-        beli.addActionListener(new java.awt.event.ActionListener() {
+        exp.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        exp.setText("Expired");
+        exp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                beliActionPerformed(evt);
+                expActionPerformed(evt);
             }
         });
 
@@ -120,7 +123,7 @@ public class main extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(beli, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(exp, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(daftar_barang))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -168,42 +171,50 @@ public class main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pemasok, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(beli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(exp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Transaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(75, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void daftar_barangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daftar_barangActionPerformed
         // TODO add your handling code here:
-    new daftar_barang().setVisible(true);
+        this.dispose();
+        new daftar_barang().setVisible(true);
+        
+        
     }//GEN-LAST:event_daftar_barangActionPerformed
 
     private void kasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kasirActionPerformed
-        // TODO add your handling code here:
+       // TODO add your handling code here:
+       this.dispose();
         new kasir_view().setVisible(true);
     }//GEN-LAST:event_kasirActionPerformed
 
-    private void beliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beliActionPerformed
-        new tambah_barang().setVisible(true);   
+    private void expActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expActionPerformed
+          this.dispose();
+          new expired().setVisible(true);
 // TODO add your handling code here:
-    }//GEN-LAST:event_beliActionPerformed
+    }//GEN-LAST:event_expActionPerformed
 
     private void keluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keluarActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
+        this.dispose();
         new login().setVisible(true);
     }//GEN-LAST:event_keluarActionPerformed
 
     private void TransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransaksiActionPerformed
         // TODO add your handling code here:
+        this.dispose();
         new daftar_transaksi().setVisible(true);
     }//GEN-LAST:event_TransaksiActionPerformed
 
     private void pemasokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pemasokActionPerformed
         // TODO add your handling code here:
+        this.dispose();
         new pemasok().setVisible(true);
     }//GEN-LAST:event_pemasokActionPerformed
 
@@ -244,9 +255,9 @@ public class main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Transaksi;
-    private javax.swing.JButton beli;
     private javax.swing.JButton daftar_barang;
     private javax.swing.JLabel date;
+    private javax.swing.JButton exp;
     private javax.swing.JButton faktur;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton kasir;
