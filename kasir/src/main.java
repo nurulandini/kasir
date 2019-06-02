@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import java.util.Date;
+import java.text.SimpleDateFormat;
 /**
  *
  * @author ASUS
@@ -16,7 +17,13 @@ public class main extends javax.swing.JFrame {
      */
     public main() {
         initComponents();
+        tanggal();
     }
+            public void tanggal(){
+            Date ys = new Date();
+            SimpleDateFormat a =new SimpleDateFormat("dd-MM-yyyy");
+            date.setText(a.format(ys));
+            }
 
     /**
      * This method is called from within the constructor to initialize the form.
