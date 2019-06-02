@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
  * @author ASUS
  */
 public class daftar_barang extends javax.swing.JFrame {
-
+     public static int statusSearching = 0;
     /**
      * Creates new form daftar_barang
      */
@@ -31,6 +31,7 @@ public class daftar_barang extends javax.swing.JFrame {
         model.addColumn("JUMLAH BARANG");
         model.addColumn("TANGGAL MASUK");
         model.addColumn("DISTRIBUTOR");
+        model.addColumn("TANGGAL EXPIRED");
         
         //menampilkan data database kedalam tabel
         try {
@@ -46,7 +47,9 @@ public class daftar_barang extends javax.swing.JFrame {
                     res.getInt(4),
                     res.getInt(5),
                     res.getDate(6),
-                    res.getString(7)});
+                    res.getString(7),
+                    res.getDate(8)
+                });
             }
             tabel_barang.setModel(model);
         } catch (Exception e) {
@@ -60,6 +63,7 @@ public class daftar_barang extends javax.swing.JFrame {
         jumlah_barang.setText(null);
         tgl_masuk.setText(null);
         distributor.setText(null);
+        tgl_exp.setText(null);
     }
 
     /**
@@ -93,6 +97,10 @@ public class daftar_barang extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         tgl_masuk = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        tgl_exp = new javax.swing.JTextField();
+        cari = new javax.swing.JTextField();
+        caributton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,17 +128,17 @@ public class daftar_barang extends javax.swing.JFrame {
 
         tabel_barang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID BARANG", "NAMA BARANG", "JENIS BARANG", "HARGA BARANG", "JUMLAH BARANG", "TANGGAL MASUK", "DISTRIBUTOR"
+                "ID BARANG", "NAMA BARANG", "JENIS BARANG", "HARGA BARANG", "JUMLAH BARANG", "TANGGAL MASUK", "DISTRIBUTOR", "TANGGAL EXPIRED"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -151,6 +159,7 @@ public class daftar_barang extends javax.swing.JFrame {
             tabel_barang.getColumnModel().getColumn(4).setResizable(false);
             tabel_barang.getColumnModel().getColumn(5).setResizable(false);
             tabel_barang.getColumnModel().getColumn(6).setResizable(false);
+            tabel_barang.getColumnModel().getColumn(7).setResizable(false);
         }
 
         tambah.setText("TAMBAH");
@@ -181,6 +190,15 @@ public class daftar_barang extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setText("TANGGAL EXPIRED");
+
+        caributton.setText("CARI");
+        caributton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                caributtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -189,13 +207,22 @@ public class daftar_barang extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(344, 344, 344))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
+                        .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(caributton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 826, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(112, 112, 112)
+                        .addGap(117, 117, 117)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(dkms)
                             .addComponent(jLabel2)
@@ -203,7 +230,8 @@ public class daftar_barang extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel7))
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
                         .addGap(140, 140, 140)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(id_barang)
@@ -212,19 +240,16 @@ public class daftar_barang extends javax.swing.JFrame {
                             .addComponent(harga_barang)
                             .addComponent(jumlah_barang)
                             .addComponent(distributor)
-                            .addComponent(tgl_masuk, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
+                            .addComponent(tgl_masuk)
+                            .addComponent(tgl_exp, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(tambah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jButton3))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,7 +258,11 @@ public class daftar_barang extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(caributton))
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -276,9 +305,13 @@ public class daftar_barang extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(distributor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(tgl_exp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -291,7 +324,7 @@ public class daftar_barang extends javax.swing.JFrame {
 
     private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
         try {
-            String sql = "INSERT INTO barang VALUES ('"+id_barang.getText()+"','"+nama_barang.getText()+"','"+jenis_barang.getText()+"','"+harga_barang.getText()+"','"+jumlah_barang.getText()+"','"+tgl_masuk.getText()+"','"+distributor.getText()+"')";
+            String sql = "INSERT INTO barang VALUES ('"+id_barang.getText()+"','"+nama_barang.getText()+"','"+jenis_barang.getText()+"','"+harga_barang.getText()+"','"+jumlah_barang.getText()+"','"+tgl_masuk.getText()+"','"+distributor.getText()+"','"+tgl_exp.getText()+"')";
             java.sql.Connection conn=(Connection)config.configDB();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             pst.execute();
@@ -300,13 +333,15 @@ public class daftar_barang extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
         new daftar_barang().setVisible(true);
+        this.dispose();
         kosong();
         load_table();
         // TODO add your handling code here:
     }//GEN-LAST:event_tambahActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    new main().setVisible(true);
+        this.dispose();
+        new main().setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -326,12 +361,14 @@ public class daftar_barang extends javax.swing.JFrame {
         tgl_masuk.setText(tanggal);
         String dist = tabel_barang.getValueAt(baris, 6).toString();
         distributor.setText(dist);
+        String exp = tabel_barang.getValueAt(baris, 7).toString();
+        tgl_exp.setText(exp);
  // TODO add your handling code here:
     }//GEN-LAST:event_tabel_barangMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            String sql ="UPDATE barang SET id = '"+id_barang.getText()+"', nama_barang = '"+nama_barang.getText()+"', jenis_barang = '"+jenis_barang.getText()+"',harga_barang= '"+harga_barang.getText()+"',jumlah_barang= '"+jumlah_barang.getText()+"',tanggal_masuk='"+tgl_masuk.getText()+"',distributor='"+distributor.getText()+"' WHERE id = '"+id_barang.getText()+"'";
+            String sql ="UPDATE barang SET id = '"+id_barang.getText()+"', nama_barang = '"+nama_barang.getText()+"', jenis_barang = '"+jenis_barang.getText()+"',harga_barang= '"+harga_barang.getText()+"',jumlah_barang= '"+jumlah_barang.getText()+"',tanggal_masuk='"+tgl_masuk.getText()+"',distributor='"+distributor.getText()+"',tanggal_exp='"+tgl_exp.getText()+"' WHERE id = '"+id_barang.getText()+"'";
             java.sql.Connection conn=(Connection)config.configDB();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             pst.execute();
@@ -340,6 +377,7 @@ public class daftar_barang extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Perubahan Data Gagal"+e.getMessage());
         }
         new daftar_barang().setVisible(true);
+        this.dispose();
         load_table();
         kosong();
         // TODO add your handling code here:
@@ -356,10 +394,54 @@ public class daftar_barang extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
         new daftar_barang().setVisible(true);
+        this.dispose();
         load_table();
         kosong();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void caributtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caributtonActionPerformed
+
+   statusSearching=1;
+   if(cari.getText().isEmpty())
+     { statusSearching = 0;}
+   else if(statusSearching==1){
+     DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID BARANG");
+        model.addColumn("NAMA BARANG");
+        model.addColumn("JENIS BARANG");
+        model.addColumn("HARGA BARANG");
+        model.addColumn("JUMLAH BARANG");
+        model.addColumn("TANGGAL MASUK");
+        model.addColumn("DISTRIBUTOR");
+        model.addColumn("TANGGAL EXPIRED");
+     String find = cari.getText();
+     try{
+          String sql = "Select * From barang Where id LIKE '"+find+"'"
+                    + "OR nama_barang LIKE '"+find+"' ORDER BY id";
+          java.sql.Connection conn=(Connection)config.configDB();
+            java.sql.Statement stm=conn.createStatement();
+            java.sql.ResultSet res=stm.executeQuery(sql);
+            while(res.next()){
+                model.addRow(new Object[]{
+                    res.getInt(1),
+                    res.getString(2),
+                    res.getString(3),
+                    res.getInt(4),
+                    res.getInt(5),
+                    res.getDate(6),
+                    res.getString(7),
+                    res.getDate(8)
+                });
+                //nomortabel++;
+          }
+            tabel_barang.setModel(model);
+          }catch(SQLException ex){
+            JOptionPane.showMessageDialog(rootPane, "Data yang dicari tidak ada !!!!");
+
+          }
+    }  // TODO add your handling code here:
+    }//GEN-LAST:event_caributtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -397,6 +479,8 @@ public class daftar_barang extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField cari;
+    private javax.swing.JButton caributton;
     private javax.swing.JTextField distributor;
     private javax.swing.JLabel dkms;
     private javax.swing.JTextField harga_barang;
@@ -411,6 +495,7 @@ public class daftar_barang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jenis_barang;
@@ -418,6 +503,7 @@ public class daftar_barang extends javax.swing.JFrame {
     private javax.swing.JTextField nama_barang;
     private javax.swing.JTable tabel_barang;
     private javax.swing.JButton tambah;
+    private javax.swing.JTextField tgl_exp;
     private javax.swing.JTextField tgl_masuk;
     // End of variables declaration//GEN-END:variables
 }

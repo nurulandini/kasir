@@ -10,8 +10,6 @@
  */
 public class main extends javax.swing.JFrame {
 
-        String nama;
-        login nama_lengkap = new login();
         
     /**
      * Creates new form main

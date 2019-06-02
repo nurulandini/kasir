@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
  * @author ASUS
  */
 public class pemasok extends javax.swing.JFrame {
-
+    public static int statusSearching = 0;
     /**
      * Creates new form pemasok
      */
@@ -73,6 +73,8 @@ public class pemasok extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        cari = new javax.swing.JTextField();
+        caributton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -151,32 +153,39 @@ public class pemasok extends javax.swing.JFrame {
             }
         });
 
+        caributton.setText("CARI");
+        caributton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                caributtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(405, 405, 405)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(464, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSeparator1))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(197, 197, 197)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dist)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(71, 71, 71)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(id_dist)
-                    .addComponent(nama_dist)
-                    .addComponent(alamat_dist, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(405, 405, 405)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(187, 187, 187)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dist)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(71, 71, 71)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(id_dist)
+                            .addComponent(nama_dist)
+                            .addComponent(alamat_dist, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(241, 241, 241)
+                        .addGap(231, 231, 231)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(56, 56, 56)
@@ -187,17 +196,28 @@ public class pemasok extends javax.swing.JFrame {
                                 .addComponent(jButton3)
                                 .addGap(32, 32, 32)
                                 .addComponent(jButton4))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(282, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 282, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(caributton)
+                .addGap(124, 124, 124))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(caributton))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dist)
                     .addComponent(id_dist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -209,7 +229,7 @@ public class pemasok extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(alamat_dist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -217,7 +237,7 @@ public class pemasok extends javax.swing.JFrame {
                     .addComponent(jButton4))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72))
+                .addGap(24, 24, 24))
         );
 
         pack();
@@ -235,6 +255,7 @@ public class pemasok extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
         new pemasok().setVisible(true);
+        this.dispose();
         kosong();
         load_table();
         // TODO add your handling code here:
@@ -262,6 +283,7 @@ public class pemasok extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
         new pemasok().setVisible(true);
+        this.dispose();
         load_table();
         kosong();
         // TODO add your handling code here:
@@ -278,15 +300,50 @@ public class pemasok extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Perubahan Data Gagal"+e.getMessage());
         }
         new pemasok().setVisible(true);
+        this.dispose();
         load_table();
         kosong();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        this.dispose();
         new main().setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void caributtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caributtonActionPerformed
+        statusSearching=1;
+   if(cari.getText().isEmpty())
+     { statusSearching = 0;}
+   else if(statusSearching==1){
+     DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID DISTRIBUTOR");
+        model.addColumn("NAMA DISTRIBUTOR");
+        model.addColumn("ALAMAT");
+     String find = cari.getText();
+     try{
+          String sql = "Select * From distributor Where id LIKE '"+find+"'"
+                    + "OR nama_distributor LIKE '"+find+"' ORDER BY id";
+          java.sql.Connection conn=(Connection)config.configDB();
+            java.sql.Statement stm=conn.createStatement();
+            java.sql.ResultSet res=stm.executeQuery(sql);
+            while(res.next()){
+                model.addRow(new Object[]{
+                    res.getInt(1),
+                    res.getString(2),
+                    res.getString(3)
+                });
+                //nomortabel++;
+          }
+            tabel_dist.setModel(model);
+          }catch(SQLException ex){
+            JOptionPane.showMessageDialog(rootPane, "Data yang dicari tidak ada !!!!");
+
+          }
+    }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_caributtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -325,6 +382,8 @@ public class pemasok extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField alamat_dist;
+    private javax.swing.JTextField cari;
+    private javax.swing.JButton caributton;
     private javax.swing.JLabel dist;
     private javax.swing.JTextField id_dist;
     private javax.swing.JButton jButton1;
