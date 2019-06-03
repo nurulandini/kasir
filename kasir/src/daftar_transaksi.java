@@ -216,7 +216,7 @@ public class daftar_transaksi extends javax.swing.JFrame {
     }//GEN-LAST:event_tgl_hariActionPerformed
 
     private void kembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembaliActionPerformed
-     this.setAlwaysOnTop(false);
+     this.dispose();
       new main().setVisible(true);   // TODO add your handling code here:
     }//GEN-LAST:event_kembaliActionPerformed
 

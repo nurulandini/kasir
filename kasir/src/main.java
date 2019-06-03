@@ -5,26 +5,44 @@
  */
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.sql.*;
+
 /**
  *
  * @author ASUS
  */
 public class main extends javax.swing.JFrame {
 
-        
     /**
      * Creates new form main
      */
     public main() {
         initComponents();
         tanggal();
+        user();
     }
             public void tanggal(){
             Date ys = new Date();
             SimpleDateFormat a =new SimpleDateFormat("dd-MM-yyyy");
             date.setText(a.format(ys));
             }
-
+            
+            public void user(){
+                Statement stmt = null;
+                ResultSet rs = null;
+                Connection conn = null;
+                try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/kasir?" + "user=root&password=");
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT COUNT(*) FROM pegawai");
+            rs = stmt.getResultSet();
+            while(rs.next()){
+                    rs.getString("nama_lengkap");
+            }
+            
+        }catch (Exception e) {
+        }
+            }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,9 +61,9 @@ public class main extends javax.swing.JFrame {
         faktur = new javax.swing.JButton();
         Transaksi = new javax.swing.JButton();
         nama = new javax.swing.JLabel();
-        username = new javax.swing.JLabel();
         tanggal = new javax.swing.JLabel();
         date = new javax.swing.JLabel();
+        user = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -105,14 +123,14 @@ public class main extends javax.swing.JFrame {
         nama.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         nama.setText("Nama     : ");
 
-        username.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        username.setText("<nama_user>");
-
         tanggal.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         tanggal.setText("Tanggal :");
 
         date.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         date.setText("<tanggal>");
+
+        user.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        user.setText("<username>");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,7 +167,7 @@ public class main extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(date)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(username)
+                                        .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(keluar)))))))
                 .addContainerGap(54, Short.MAX_VALUE))
@@ -163,7 +181,7 @@ public class main extends javax.swing.JFrame {
                     .addComponent(keluar)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(nama)
-                        .addComponent(username)))
+                        .addComponent(user)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tanggal)
@@ -270,6 +288,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JLabel nama;
     private javax.swing.JButton pemasok;
     private javax.swing.JLabel tanggal;
-    private javax.swing.JLabel username;
+    private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
+
 }

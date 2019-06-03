@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.awt.HeadlessException;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -36,12 +37,12 @@ public class pemasok extends javax.swing.JFrame {
             java.sql.ResultSet res=stm.executeQuery(sql);
             while(res.next()){
                 model.addRow(new Object[]{
-                    res.getInt("id"),
+                    res.getInt("kode_dist"),
                     res.getString("nama_distributor"),
                     res.getString("alamat")});
             }
             
-        }catch (Exception e) {
+        }catch (SQLException e) {
         }
 }
     private void kosong(){
@@ -251,7 +252,7 @@ public class pemasok extends javax.swing.JFrame {
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             pst.execute();
             JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
-        } catch (Exception e) {
+        } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
         new pemasok().setVisible(true);
@@ -274,12 +275,12 @@ public class pemasok extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-            String sql ="delete from distributor where id='"+id_dist.getText()+"'";
+            String sql ="delete from distributor where kode_dist='"+id_dist.getText()+"'";
             java.sql.Connection conn=(Connection)config.configDB();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             pst.execute();
             JOptionPane.showMessageDialog(this, "BERHASIL DIHAPUS");
-        } catch (Exception e) {
+        } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
         new pemasok().setVisible(true);
@@ -291,12 +292,12 @@ public class pemasok extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
-            String sql ="UPDATE distributor SET id = '"+id_dist.getText()+"', nama_distributor = '"+nama_dist.getText()+"', alamat = '"+alamat_dist.getText()+"'WHERE id = '"+id_dist.getText()+"'";
+            String sql ="UPDATE distributor SET kode_dist = '"+id_dist.getText()+"', nama_distributor = '"+nama_dist.getText()+"', alamat = '"+alamat_dist.getText()+"'WHERE kode_dist = '"+id_dist.getText()+"'";
             java.sql.Connection conn=(Connection)config.configDB();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             pst.execute();
             JOptionPane.showMessageDialog(null, "data berhasil di edit");
-        } catch (Exception e) {
+        } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "Perubahan Data Gagal"+e.getMessage());
         }
         new pemasok().setVisible(true);
@@ -313,7 +314,7 @@ public class pemasok extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void caributtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caributtonActionPerformed
-        statusSearching=1;
+   statusSearching=1;
    if(cari.getText().isEmpty())
      { statusSearching = 0;}
    else if(statusSearching==1){
@@ -323,8 +324,8 @@ public class pemasok extends javax.swing.JFrame {
         model.addColumn("ALAMAT");
      String find = cari.getText();
      try{
-          String sql = "Select * From distributor Where id LIKE '"+find+"'"
-                    + "OR nama_distributor LIKE '"+find+"' ORDER BY id";
+          String sql = "Select * From distributor Where kode_dist LIKE '%"+find+"%'"
+                    + "OR nama_distributor LIKE '%"+find+"%'"+"OR alamat LIKE '%"+find+"%'";
           java.sql.Connection conn=(Connection)config.configDB();
             java.sql.Statement stm=conn.createStatement();
             java.sql.ResultSet res=stm.executeQuery(sql);
@@ -373,10 +374,8 @@ public class pemasok extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new pemasok().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new pemasok().setVisible(true);
         });
     }
 

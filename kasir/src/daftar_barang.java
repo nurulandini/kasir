@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.awt.HeadlessException;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -30,7 +31,7 @@ public class daftar_barang extends javax.swing.JFrame {
         model.addColumn("HARGA BARANG");
         model.addColumn("JUMLAH BARANG");
         model.addColumn("TANGGAL MASUK");
-        model.addColumn("DISTRIBUTOR");
+        model.addColumn("KODE DISTRIBUTOR");
         model.addColumn("TANGGAL EXPIRED");
         
         //menampilkan data database kedalam tabel
@@ -47,12 +48,12 @@ public class daftar_barang extends javax.swing.JFrame {
                     res.getInt(4),
                     res.getInt(5),
                     res.getDate(6),
-                    res.getString(7),
-                    res.getDate(8)
+                    res.getString(8),
+                    res.getDate(7)
                 });
             }
             tabel_barang.setModel(model);
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
     }
     private void kosong(){
@@ -111,6 +112,12 @@ public class daftar_barang extends javax.swing.JFrame {
         jumlah_barang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jumlah_barangActionPerformed(evt);
+            }
+        });
+
+        distributor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                distributorActionPerformed(evt);
             }
         });
 
@@ -324,12 +331,12 @@ public class daftar_barang extends javax.swing.JFrame {
 
     private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
         try {
-            String sql = "INSERT INTO barang VALUES ('"+id_barang.getText()+"','"+nama_barang.getText()+"','"+jenis_barang.getText()+"','"+harga_barang.getText()+"','"+jumlah_barang.getText()+"','"+tgl_masuk.getText()+"','"+distributor.getText()+"','"+tgl_exp.getText()+"')";
+            String sql = "INSERT INTO barang VALUES ('"+id_barang.getText()+"','"+nama_barang.getText()+"','"+jenis_barang.getText()+"','"+harga_barang.getText()+"','"+jumlah_barang.getText()+"','"+tgl_masuk.getText()+"','"+tgl_exp.getText()+"','"+distributor.getText()+"')";
             java.sql.Connection conn=(Connection)config.configDB();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             pst.execute();
             JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
-        } catch (Exception e) {
+        } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
         new daftar_barang().setVisible(true);
@@ -347,8 +354,8 @@ public class daftar_barang extends javax.swing.JFrame {
 
     private void tabel_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_barangMouseClicked
         int baris = tabel_barang.rowAtPoint(evt.getPoint());
-        String id = tabel_barang.getValueAt (baris, 0).toString();
-        id_barang.setText(id);
+        String kode_barang = tabel_barang.getValueAt (baris, 0).toString();
+        id_barang.setText(kode_barang);
         String nama = tabel_barang.getValueAt(baris, 1).toString();
         nama_barang.setText(nama);
         String jenis = tabel_barang.getValueAt(baris, 2).toString();
@@ -359,8 +366,8 @@ public class daftar_barang extends javax.swing.JFrame {
         jumlah_barang.setText(jumlah);
         String tanggal = tabel_barang.getValueAt(baris, 5).toString();
         tgl_masuk.setText(tanggal);
-        String dist = tabel_barang.getValueAt(baris, 6).toString();
-        distributor.setText(dist);
+        String kode_dist = tabel_barang.getValueAt(baris, 6).toString();
+        distributor.setText(kode_dist);
         String exp = tabel_barang.getValueAt(baris, 7).toString();
         tgl_exp.setText(exp);
  // TODO add your handling code here:
@@ -368,12 +375,12 @@ public class daftar_barang extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            String sql ="UPDATE barang SET id = '"+id_barang.getText()+"', nama_barang = '"+nama_barang.getText()+"', jenis_barang = '"+jenis_barang.getText()+"',harga_barang= '"+harga_barang.getText()+"',jumlah_barang= '"+jumlah_barang.getText()+"',tanggal_masuk='"+tgl_masuk.getText()+"',distributor='"+distributor.getText()+"',tanggal_exp='"+tgl_exp.getText()+"' WHERE id = '"+id_barang.getText()+"'";
+            String sql ="UPDATE barang SET kode_barang = '"+id_barang.getText()+"', nama_barang = '"+nama_barang.getText()+"', jenis_barang = '"+jenis_barang.getText()+"',harga_barang= '"+harga_barang.getText()+"',jumlah_barang= '"+jumlah_barang.getText()+"',tanggal_masuk='"+tgl_masuk.getText()+"',kode_dist='"+distributor.getText()+"',tanggal_exp='"+tgl_exp.getText()+"' WHERE kode_barang = '"+id_barang.getText()+"'";
             java.sql.Connection conn=(Connection)config.configDB();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             pst.execute();
             JOptionPane.showMessageDialog(null, "data berhasil di edit");
-        } catch (Exception e) {
+        } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "Perubahan Data Gagal"+e.getMessage());
         }
         new daftar_barang().setVisible(true);
@@ -385,12 +392,12 @@ public class daftar_barang extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     try {
-            String sql ="delete from barang where id='"+id_barang.getText()+"'";
+            String sql ="delete from barang where kode_barang ='"+id_barang.getText()+"'";
             java.sql.Connection conn=(Connection)config.configDB();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             pst.execute();
             JOptionPane.showMessageDialog(this, "berhasil di hapus");
-        } catch (Exception e) {
+        } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
         new daftar_barang().setVisible(true);
@@ -413,12 +420,12 @@ public class daftar_barang extends javax.swing.JFrame {
         model.addColumn("HARGA BARANG");
         model.addColumn("JUMLAH BARANG");
         model.addColumn("TANGGAL MASUK");
-        model.addColumn("DISTRIBUTOR");
+        model.addColumn("KODE DISTRIBUTOR");
         model.addColumn("TANGGAL EXPIRED");
      String find = cari.getText();
      try{
-          String sql = "Select * From barang Where id LIKE '"+find+"'"
-                    + "OR nama_barang LIKE '"+find+"' ORDER BY id";
+          String sql = "Select * From barang Where kode_barang LIKE '%"+find+"%'"
+                    + "OR nama_barang LIKE '%"+find+"%'"+ "OR jenis_barang LIKE '%"+find+"%'";
           java.sql.Connection conn=(Connection)config.configDB();
             java.sql.Statement stm=conn.createStatement();
             java.sql.ResultSet res=stm.executeQuery(sql);
@@ -430,8 +437,8 @@ public class daftar_barang extends javax.swing.JFrame {
                     res.getInt(4),
                     res.getInt(5),
                     res.getDate(6),
-                    res.getString(7),
-                    res.getDate(8)
+                    res.getString(8),
+                    res.getDate(7)
                 });
                 //nomortabel++;
           }
@@ -442,6 +449,10 @@ public class daftar_barang extends javax.swing.JFrame {
           }
     }  // TODO add your handling code here:
     }//GEN-LAST:event_caributtonActionPerformed
+
+    private void distributorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_distributorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_distributorActionPerformed
 
     /**
      * @param args the command line arguments
