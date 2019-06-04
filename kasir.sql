@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 03 Jun 2019 pada 19.53
+-- Generation Time: 04 Jun 2019 pada 05.45
 -- Versi Server: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -44,11 +44,11 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`kode_barang`, `nama_barang`, `jenis_barang`, `harga_barang`, `jumlah_barang`, `tanggal_masuk`, `tanggal_exp`, `kode_dist`) VALUES
-(1, 'Mommy Poko', 'Perlengkapan', 56000, 100, '2017-05-02', '2018-03-01', 1),
-(2, 'Lays', 'Makanan', 30000, 4, '2019-04-08', '2020-05-31', 2),
-(3, 'Sari Roti', 'Makanan', 5000, 50, '2019-02-03', '2019-05-03', 3),
-(4, 'Frisian Flag Cokelat', 'Minuman', 4600, 120, '2019-06-03', '2004-01-01', 4),
-(5, 'Sprite', 'Minuman', 5000, 120, '2019-05-12', '2020-03-05', 5);
+(1, 'Mommy Poko', 'Perlengkapan', 56000, 98, '2017-05-02', '2018-03-01', 1),
+(2, 'Lays', 'Makanan', 30000, 0, '2019-04-08', '2020-05-31', 2),
+(3, 'Sari Roti', 'Makanan', 5000, 48, '2019-02-03', '2019-05-03', 3),
+(4, 'Frisian Flag Cokelat', 'Minuman', 4600, 116, '2019-06-03', '2004-01-01', 4),
+(5, 'Sprite', 'Minuman', 5000, 116, '2019-05-12', '2020-03-05', 5);
 
 -- --------------------------------------------------------
 
@@ -102,7 +102,9 @@ CREATE TABLE `pegawai` (
 --
 
 INSERT INTO `pegawai` (`id`, `nama_lengkap`, `Password`) VALUES
-(1, 'Tria Riskiani', 'tria12345');
+(1, 'Tria Riskiani', 'tria12345'),
+(2, 'Nurul Andini', 'nurul12345'),
+(3, 'Fahmi Rizal', 'fahmi12345');
 
 -- --------------------------------------------------------
 
@@ -111,10 +113,47 @@ INSERT INTO `pegawai` (`id`, `nama_lengkap`, `Password`) VALUES
 --
 
 CREATE TABLE `transaksi` (
-  `kode_transaksi` int(100) NOT NULL,
+  `kode_transaksi` int(15) NOT NULL,
   `tanggal` date NOT NULL,
-  `id` int(11) NOT NULL
+  `id` int(30) NOT NULL,
+  `total_transaksi` int(100) NOT NULL,
+  `bayar` int(100) NOT NULL,
+  `kembali` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `transaksi`
+--
+
+INSERT INTO `transaksi` (`kode_transaksi`, `tanggal`, `id`, `total_transaksi`, `bayar`, `kembali`) VALUES
+(1906040001, '2019-06-04', 2, 96000, 100000, 4000),
+(1906040002, '2019-06-04', 2, 18400, 20000, 1600);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `transaksi_detail`
+--
+
+CREATE TABLE `transaksi_detail` (
+  `kode_transaksi` int(15) NOT NULL,
+  `kode_barang` int(100) NOT NULL,
+  `harga` int(100) NOT NULL,
+  `total_barang` int(100) NOT NULL,
+  `total` int(100) NOT NULL,
+  `tanggal` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `transaksi_detail`
+--
+
+INSERT INTO `transaksi_detail` (`kode_transaksi`, `kode_barang`, `harga`, `total_barang`, `total`, `tanggal`) VALUES
+(190604001, 1, 56000, 1, 56000, '2019-06-04 10:29:38'),
+(1906040001, 1, 56000, 1, 56000, '2019-06-04 10:33:58'),
+(1906040001, 2, 30000, 1, 30000, '2019-06-04 10:34:04'),
+(1906040001, 3, 5000, 2, 10000, '2019-06-04 10:34:12'),
+(1906040002, 4, 4600, 4, 18400, '2019-06-04 10:44:04');
 
 -- --------------------------------------------------------
 
@@ -152,8 +191,7 @@ ALTER TABLE `pegawai`
 -- Indexes for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD PRIMARY KEY (`kode_transaksi`),
-  ADD KEY `id` (`id`);
+  ADD KEY `kode_barang` (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -172,12 +210,6 @@ ALTER TABLE `distributor`
   MODIFY `kode_dist` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `transaksi`
---
-ALTER TABLE `transaksi`
-  MODIFY `kode_transaksi` int(100) NOT NULL AUTO_INCREMENT;
-
---
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
@@ -191,7 +223,7 @@ ALTER TABLE `barang`
 -- Ketidakleluasaan untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id`) REFERENCES `pegawai` (`id`);
+  ADD CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`id`) REFERENCES `barang` (`kode_barang`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

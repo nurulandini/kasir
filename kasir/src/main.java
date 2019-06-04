@@ -214,7 +214,7 @@ public class main extends javax.swing.JFrame {
     private void kasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kasirActionPerformed
        // TODO add your handling code here:
        this.dispose();
-        new kasir_view().setVisible(true);
+        new FrmJual().setVisible(true);
     }//GEN-LAST:event_kasirActionPerformed
 
     private void expActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expActionPerformed
