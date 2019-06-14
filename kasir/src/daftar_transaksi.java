@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import java.sql.*;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author ACER
@@ -15,6 +16,42 @@ public class daftar_transaksi extends javax.swing.JFrame {
      */
     public daftar_transaksi() {
         initComponents();
+        load_table();
+        kosong();
+    }
+    
+    private void load_table(){
+        //membuat tampilan model tabel
+       DefaultTableModel model = new DefaultTableModel();
+       model.addColumn("KODE TRANSAKSI");
+       model.addColumn("KODE BARANG");
+       model.addColumn("HARGA");
+       model.addColumn("TOTAL BARANG");
+       model.addColumn("TOTAL");
+       model.addColumn("TANGGAL");
+       
+        //menampilkan data dari database
+       try {
+            String sql = "select * from transaksi_detail";
+            java.sql.Connection conn=(Connection)config.configDB();
+            java.sql.Statement stm=conn.createStatement();
+            java.sql.ResultSet res=stm.executeQuery(sql);
+            while(res.next()){
+                model.addRow(new Object[]{
+                    res.getInt(1),
+                    res.getInt(2),
+                    res.getInt(3),
+                    res.getInt(4),
+                    res.getInt(5),
+                    res.getDate(6),
+                });
+            }
+            tabel_transaksi.setModel(model);
+        } catch (SQLException e) {
+        }
+    }
+    private void kosong(){
+    
     }
 
     /**
@@ -28,14 +65,14 @@ public class daftar_transaksi extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabel_transaksi = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         cari = new javax.swing.JComboBox<>();
         tgl_hari = new javax.swing.JComboBox<>();
         bln_hari = new javax.swing.JComboBox<>();
         thn_hari = new javax.swing.JComboBox<>();
         kembali = new javax.swing.JButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        btnCari = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -47,7 +84,7 @@ public class daftar_transaksi extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
         jLabel1.setText("Daftar Transaksi");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabel_transaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -84,12 +121,12 @@ public class daftar_transaksi extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane1.setViewportView(tabel_transaksi);
+        if (tabel_transaksi.getColumnModel().getColumnCount() > 0) {
+            tabel_transaksi.getColumnModel().getColumn(0).setResizable(false);
+            tabel_transaksi.getColumnModel().getColumn(1).setResizable(false);
+            tabel_transaksi.getColumnModel().getColumn(2).setResizable(false);
+            tabel_transaksi.getColumnModel().getColumn(3).setResizable(false);
         }
 
         jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
@@ -121,10 +158,10 @@ public class daftar_transaksi extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton1.setText("jToggleButton1");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCari.setText("Cari");
+        btnCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                btnCariActionPerformed(evt);
             }
         });
 
@@ -133,14 +170,16 @@ public class daftar_transaksi extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(239, 239, 239)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(239, 239, 239)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(kembali)
                             .addGroup(layout.createSequentialGroup()
@@ -155,9 +194,8 @@ public class daftar_transaksi extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(thn_hari, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jToggleButton1)))))
-                        .addGap(0, 110, Short.MAX_VALUE)))
-                .addContainerGap())
+                                        .addComponent(btnCari)))))))
+                .addContainerGap(174, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,7 +211,7 @@ public class daftar_transaksi extends javax.swing.JFrame {
                     .addComponent(tgl_hari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bln_hari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(thn_hari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton1))
+                    .addComponent(btnCari))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
@@ -234,9 +272,9 @@ public class daftar_transaksi extends javax.swing.JFrame {
       new main().setVisible(true);   // TODO add your handling code here:
     }//GEN-LAST:event_kembaliActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_btnCariActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,13 +313,13 @@ public class daftar_transaksi extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> bln_hari;
+    private javax.swing.JToggleButton btnCari;
     private javax.swing.JComboBox<String> cari;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JButton kembali;
+    private javax.swing.JTable tabel_transaksi;
     private javax.swing.JComboBox<String> tgl_hari;
     private javax.swing.JComboBox<String> thn_hari;
     // End of variables declaration//GEN-END:variables
