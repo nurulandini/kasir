@@ -20,7 +20,21 @@ public class pemasok extends javax.swing.JFrame {
         initComponents();
         load_table();
         kosong();
-        
+        AutoNomor();
+    }
+    public void AutoNomor() {
+        try {
+            String sql = "select max(kode_dist) from distributor";
+            java.sql.Connection conn=(Connection)config.configDB();
+            java.sql.Statement stm=conn.createStatement();
+            java.sql.ResultSet res=stm.executeQuery(sql);
+            while (res.next()){
+                int a = res.getInt(1);
+                id_dist.setText(""+ Integer.toString(a+1));
+            }
+        } catch (Exception e) {
+            System.out.println(""+ e.getMessage());
+        }
     }
     private void load_table(){
         // membuat tampilan model tabel
@@ -259,6 +273,7 @@ public class pemasok extends javax.swing.JFrame {
         this.dispose();
         kosong();
         load_table();
+        AutoNomor();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -287,6 +302,7 @@ public class pemasok extends javax.swing.JFrame {
         this.dispose();
         load_table();
         kosong();
+        AutoNomor();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -304,6 +320,7 @@ public class pemasok extends javax.swing.JFrame {
         this.dispose();
         load_table();
         kosong();
+        AutoNomor();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
