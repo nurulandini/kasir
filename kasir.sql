@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 04 Jun 2019 pada 05.45
--- Versi Server: 10.1.26-MariaDB
--- PHP Version: 7.1.9
+-- Generation Time: Jun 15, 2019 at 04:44 PM
+-- Server version: 10.1.35-MariaDB
+-- PHP Version: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,35 +25,37 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `barang`
+-- Table structure for table `barang`
 --
 
 CREATE TABLE `barang` (
   `kode_barang` int(11) NOT NULL,
   `nama_barang` varchar(30) NOT NULL,
-  `jenis_barang` varchar(20) NOT NULL,
+  `nama_kategori` text NOT NULL,
   `harga_barang` int(10) NOT NULL,
   `jumlah_barang` int(11) NOT NULL,
   `tanggal_masuk` date NOT NULL,
   `tanggal_exp` date NOT NULL,
-  `kode_dist` int(30) NOT NULL
+  `nama_dist` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `barang`
+-- Dumping data for table `barang`
 --
 
-INSERT INTO `barang` (`kode_barang`, `nama_barang`, `jenis_barang`, `harga_barang`, `jumlah_barang`, `tanggal_masuk`, `tanggal_exp`, `kode_dist`) VALUES
-(1, 'Mommy Poko', 'Perlengkapan', 56000, 98, '2017-05-02', '2018-03-01', 1),
-(2, 'Lays', 'Makanan', 30000, 0, '2019-04-08', '2020-05-31', 2),
-(3, 'Sari Roti', 'Makanan', 5000, 48, '2019-02-03', '2019-05-03', 3),
-(4, 'Frisian Flag Cokelat', 'Minuman', 4600, 116, '2019-06-03', '2004-01-01', 4),
-(5, 'Sprite', 'Minuman', 5000, 116, '2019-05-12', '2020-03-05', 5);
+INSERT INTO `barang` (`kode_barang`, `nama_barang`, `nama_kategori`, `harga_barang`, `jumlah_barang`, `tanggal_masuk`, `tanggal_exp`, `nama_dist`) VALUES
+(1, 'Mommy Poko', 'Popok', 50000, 93, '2017-05-03', '2018-03-01', 'PT.Kerta Jaya'),
+(2, 'Lays', 'Makanan', 30000, -3, '2019-04-04', '2020-05-31', 'PT. Kita Bisa'),
+(3, 'Sari Roti', 'Makanan', 5000, 48, '2019-02-03', '2019-05-03', 'PT.Indah Lestari'),
+(4, 'Frisian Flag Cokelat', 'Makanan', 4600, 116, '2019-06-03', '2004-01-01', 'PT.Medan Jaya'),
+(5, 'Sprite', 'Minuman', 5000, 116, '2019-05-12', '2020-03-05', 'PT.Kita Bisa'),
+(6, 'Coca-cola', 'Minuman', 50000, 5, '2018-06-06', '2010-10-04', 'PT. Jaya Indah '),
+(7, 'ali', 'Makanan', 300, 40, '2019-06-14', '2019-06-15', 'PT. Jaya Indah ');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `distributor`
+-- Table structure for table `distributor`
 --
 
 CREATE TABLE `distributor` (
@@ -63,7 +65,7 @@ CREATE TABLE `distributor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `distributor`
+-- Dumping data for table `distributor`
 --
 
 INSERT INTO `distributor` (`kode_dist`, `nama_distributor`, `alamat`) VALUES
@@ -71,13 +73,14 @@ INSERT INTO `distributor` (`kode_dist`, `nama_distributor`, `alamat`) VALUES
 (2, 'PT. Maju Jaya', 'Jakarta'),
 (3, 'PT. Indah Lestari', 'Bandung'),
 (4, 'PT. Medan Jaya', 'Medan'),
-(5, 'PT. Kita Bisa', 'Deli Serdang');
+(5, 'PT. Kita Bisa', 'Deli Serdang'),
+(6, 'PT.Kerta Jaya', 'Aceh');
 
 -- --------------------------------------------------------
 
 --
 -- Stand-in structure for view `expired`
--- (Lihat di bawah untuk tampilan aktual)
+-- (See below for the actual view)
 --
 CREATE TABLE `expired` (
 `kode_barang` int(11)
@@ -88,7 +91,29 @@ CREATE TABLE `expired` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pegawai`
+-- Table structure for table `kategori`
+--
+
+CREATE TABLE `kategori` (
+  `id_kategori` int(11) NOT NULL,
+  `nama_kategori` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kategori`
+--
+
+INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
+(1, 'Makanan'),
+(2, 'Minuman'),
+(3, 'Popok'),
+(4, 'Barang'),
+(5, 'Susu');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pegawai`
 --
 
 CREATE TABLE `pegawai` (
@@ -98,7 +123,7 @@ CREATE TABLE `pegawai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pegawai`
+-- Dumping data for table `pegawai`
 --
 
 INSERT INTO `pegawai` (`id`, `nama_lengkap`, `Password`) VALUES
@@ -109,7 +134,7 @@ INSERT INTO `pegawai` (`id`, `nama_lengkap`, `Password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transaksi`
+-- Table structure for table `transaksi`
 --
 
 CREATE TABLE `transaksi` (
@@ -122,17 +147,18 @@ CREATE TABLE `transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `transaksi`
+-- Dumping data for table `transaksi`
 --
 
 INSERT INTO `transaksi` (`kode_transaksi`, `tanggal`, `id`, `total_transaksi`, `bayar`, `kembali`) VALUES
 (1906040001, '2019-06-04', 2, 96000, 100000, 4000),
-(1906040002, '2019-06-04', 2, 18400, 20000, 1600);
+(1906040002, '2019-06-04', 2, 18400, 20000, 1600),
+(1906060001, '2019-06-05', 3, 168002, 100000, -68002);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transaksi_detail`
+-- Table structure for table `transaksi_detail`
 --
 
 CREATE TABLE `transaksi_detail` (
@@ -145,7 +171,7 @@ CREATE TABLE `transaksi_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `transaksi_detail`
+-- Dumping data for table `transaksi_detail`
 --
 
 INSERT INTO `transaksi_detail` (`kode_transaksi`, `kode_barang`, `harga`, `total_barang`, `total`, `tanggal`) VALUES
@@ -153,12 +179,14 @@ INSERT INTO `transaksi_detail` (`kode_transaksi`, `kode_barang`, `harga`, `total
 (1906040001, 1, 56000, 1, 56000, '2019-06-04 10:33:58'),
 (1906040001, 2, 30000, 1, 30000, '2019-06-04 10:34:04'),
 (1906040001, 3, 5000, 2, 10000, '2019-06-04 10:34:12'),
-(1906040002, 4, 4600, 4, 18400, '2019-06-04 10:44:04');
+(1906040002, 4, 4600, 4, 18400, '2019-06-04 10:44:04'),
+(1906060001, 1, 56000, 2, 2, '2019-06-06 11:09:12'),
+(1906060001, 1, 56000, 3, 168000, '2019-06-06 11:09:47');
 
 -- --------------------------------------------------------
 
 --
--- Struktur untuk view `expired`
+-- Structure for view `expired`
 --
 DROP TABLE IF EXISTS `expired`;
 
@@ -173,13 +201,19 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 ALTER TABLE `barang`
   ADD PRIMARY KEY (`kode_barang`),
-  ADD KEY `kode_dist` (`kode_dist`);
+  ADD KEY `kode_dist` (`nama_dist`);
 
 --
 -- Indexes for table `distributor`
 --
 ALTER TABLE `distributor`
   ADD PRIMARY KEY (`kode_dist`);
+
+--
+-- Indexes for table `kategori`
+--
+ALTER TABLE `kategori`
+  ADD PRIMARY KEY (`id_kategori`);
 
 --
 -- Indexes for table `pegawai`
@@ -201,26 +235,20 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `kode_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `kode_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `distributor`
 --
 ALTER TABLE `distributor`
-  MODIFY `kode_dist` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `kode_dist` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `barang`
---
-ALTER TABLE `barang`
-  ADD CONSTRAINT `barang_ibfk_1` FOREIGN KEY (`kode_dist`) REFERENCES `distributor` (`kode_dist`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ketidakleluasaan untuk tabel `transaksi`
+-- Constraints for table `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`id`) REFERENCES `barang` (`kode_barang`);
