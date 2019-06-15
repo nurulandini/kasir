@@ -112,8 +112,6 @@ public class login extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 153));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\acer\\Downloads\\cashier2_117800 (1).png")); // NOI18N
-
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Sistem Kasir Java NetBeans");
@@ -196,11 +194,13 @@ public class login extends javax.swing.JFrame {
             rs = stmt.executeQuery("SELECT COUNT(*) FROM pegawai WHERE id = '"+id_pegawai.getText()+"'and Password='"+kataSandi+"'");
             rs = stmt.getResultSet();
             rs.next();
+            coba.setUserLogin(id_pegawai.getText());
             int ada = rs.getInt(1);
             if(ada==0){
                 JOptionPane.showMessageDialog(this,"Username atau Password salah!","Error Login!",JOptionPane.ERROR_MESSAGE);
             }else{
                 JOptionPane.showMessageDialog(this,"Berhasil Login","Login",JOptionPane.INFORMATION_MESSAGE);
+               
                 new main().setVisible(true);
                 this.dispose();
             }

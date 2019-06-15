@@ -12,6 +12,7 @@ import java.sql.*;
  * @author ASUS
  */
 public class main extends javax.swing.JFrame {
+    String id = coba.getUserLogin();
 
     /**
      * Creates new form main
@@ -20,24 +21,25 @@ public class main extends javax.swing.JFrame {
         initComponents();
         tanggal();
         user();
+        
     }
-            public void tanggal(){
-            Date ys = new Date();
-            SimpleDateFormat a =new SimpleDateFormat("dd-MM-yyyy");
+    
+            
+    public void tanggal(){
+        Date ys = new Date();
+        SimpleDateFormat a =new SimpleDateFormat("dd-MM-yyyy");
             date.setText(a.format(ys));
             }
             
             public void user(){
-                Statement stmt = null;
-                ResultSet rs = null;
-                Connection conn = null;
-                try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/kasir?" + "user=root&password=");
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery("SELECT COUNT(*) FROM pegawai");
-            rs = stmt.getResultSet();
-            while(rs.next()){
-                    rs.getString("nama_lengkap");
+            try {
+            id = coba.getUserLogin();
+            String sql = "select * from pegawai where id ="+id;
+            java.sql.Connection conn=(Connection)config.configDB();
+            java.sql.Statement stm=conn.createStatement();
+            java.sql.ResultSet res=stm.executeQuery(sql);
+            while(res.next()){
+                nama_user.setText(res.getString("nama_lengkap"));
             }
             
         }catch (Exception e) {
@@ -55,7 +57,7 @@ public class main extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         nama = new javax.swing.JLabel();
-        user = new javax.swing.JLabel();
+        nama_user = new javax.swing.JLabel();
         keluar = new javax.swing.JButton();
         tanggal = new javax.swing.JLabel();
         date = new javax.swing.JLabel();
@@ -81,8 +83,8 @@ public class main extends javax.swing.JFrame {
         nama.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         nama.setText("Nama Pegawai    : ");
 
-        user.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        user.setText("<username>");
+        nama_user.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        nama_user.setText("<username>");
 
         keluar.setBackground(new java.awt.Color(153, 0, 0));
         keluar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -100,8 +102,6 @@ public class main extends javax.swing.JFrame {
         date.setText("<tanggal>");
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 153));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\acer\\Downloads\\cashier2_117800 (1).png")); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -243,20 +243,21 @@ public class main extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(keluar)
                         .addGap(50, 50, 50))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(date))
-                        .addGap(112, 112, 112))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(126, 126, 126)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(68, 68, 68)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(nama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(tanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(date)
+                                    .addComponent(nama_user, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(126, 126, 126)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(159, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,7 +271,7 @@ public class main extends javax.swing.JFrame {
                         .addGap(77, 77, 77)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(nama)
-                            .addComponent(user))
+                            .addComponent(nama_user))
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tanggal)
@@ -392,9 +393,9 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JButton kasir;
     private javax.swing.JButton keluar;
     private javax.swing.JLabel nama;
+    private javax.swing.JLabel nama_user;
     private javax.swing.JButton pemasok;
     private javax.swing.JLabel tanggal;
-    private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
 
 }
