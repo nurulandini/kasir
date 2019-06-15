@@ -619,6 +619,7 @@ public void UpdateStock(){
         jLabel3.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jLabel3.setText("Tanggal");
 
+        BtnBatal.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnBatal.setText("Batal");
         BtnBatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -626,6 +627,7 @@ public void UpdateStock(){
             }
         });
 
+        cmbPelanggan.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cmbPelanggan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih" }));
         cmbPelanggan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -784,6 +786,7 @@ public void UpdateStock(){
             }
         });
 
+        BtnAdd.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnAdd.setText("Tambahkan");
         BtnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -806,6 +809,7 @@ public void UpdateStock(){
 
         TxtKembali.setName(""); // NOI18N
 
+        BtnSimpan.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnSimpan.setText("Simpan");
         BtnSimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
