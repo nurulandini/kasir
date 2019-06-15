@@ -230,7 +230,7 @@ public class pemasok extends javax.swing.JFrame {
             }
         });
 
-        pemasok.setBackground(new java.awt.Color(204, 255, 204));
+        pemasok.setBackground(new java.awt.Color(153, 255, 204));
         pemasok.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         pemasok.setText("Pemasok");
         pemasok.addActionListener(new java.awt.event.ActionListener() {
