@@ -249,7 +249,7 @@ public class daftar_barang extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
 
-        daftar_barang.setBackground(new java.awt.Color(204, 255, 204));
+        daftar_barang.setBackground(new java.awt.Color(153, 255, 204));
         daftar_barang.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         daftar_barang.setText("Daftar Barang");
         daftar_barang.addActionListener(new java.awt.event.ActionListener() {
