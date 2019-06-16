@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2019 at 04:44 PM
--- Server version: 10.1.35-MariaDB
--- PHP Version: 7.2.9
+-- Generation Time: Jun 16, 2019 at 09:14 PM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,13 +30,13 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `barang` (
   `kode_barang` int(11) NOT NULL,
-  `nama_barang` varchar(30) NOT NULL,
+  `nama_barang` varchar(100) NOT NULL,
   `nama_kategori` text NOT NULL,
   `harga_barang` int(10) NOT NULL,
   `jumlah_barang` int(11) NOT NULL,
   `tanggal_masuk` date NOT NULL,
   `tanggal_exp` date NOT NULL,
-  `nama_dist` varchar(30) NOT NULL
+  `nama_dist` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -45,12 +45,18 @@ CREATE TABLE `barang` (
 
 INSERT INTO `barang` (`kode_barang`, `nama_barang`, `nama_kategori`, `harga_barang`, `jumlah_barang`, `tanggal_masuk`, `tanggal_exp`, `nama_dist`) VALUES
 (1, 'Mommy Poko', 'Popok', 50000, 93, '2017-05-03', '2018-03-01', 'PT.Kerta Jaya'),
-(2, 'Lays', 'Makanan', 30000, -3, '2019-04-04', '2020-05-31', 'PT. Kita Bisa'),
+(2, 'Lays', 'Makanan', 10000, -3, '2019-04-04', '2020-05-31', 'PT. Kita Bisa'),
 (3, 'Sari Roti', 'Makanan', 5000, 48, '2019-02-03', '2019-05-03', 'PT.Indah Lestari'),
 (4, 'Frisian Flag Cokelat', 'Makanan', 4600, 116, '2019-06-03', '2004-01-01', 'PT.Medan Jaya'),
 (5, 'Sprite', 'Minuman', 5000, 116, '2019-05-12', '2020-03-05', 'PT.Kita Bisa'),
-(6, 'Coca-cola', 'Minuman', 50000, 5, '2018-06-06', '2010-10-04', 'PT. Jaya Indah '),
-(7, 'ali', 'Makanan', 300, 40, '2019-06-14', '2019-06-15', 'PT. Jaya Indah ');
+(6, 'Coca-cola', 'Minuman', 32000, 5, '2018-06-06', '2010-10-04', 'PT. Jaya Indah '),
+(7, 'Indomie', 'Makanan', 3000, 40, '2019-06-14', '2019-06-15', 'PT. Jaya Indah '),
+(8, 'Wardah Sun Screen SPF 30', 'Kosmetik', 30000, 50, '2019-01-02', '2021-10-08', 'PT Paragon Technology & Innovation Industri'),
+(9, 'Wardah Lightening Night Cream', 'Kosmetik', 42000, 30, '2019-01-02', '2019-10-15', 'PT Paragon Technology & Innovation Industri'),
+(10, 'Wardah Everyday Luminous Face Powder', 'Kosmetik', 40000, 30, '2019-01-02', '2021-09-18', 'PT Paragon Technology & Innovation Industri'),
+(11, 'Pensil 2B', 'Alat Tulis', 4000, 100, '2019-05-06', '2021-06-01', 'PT Staedtler Indonesia'),
+(12, 'Chitato', 'Makanan', 9500, 67, '2018-12-11', '2020-01-08', 'PT Universal Indofood Product'),
+(13, 'Cheetos', 'Makanan', 8000, 60, '2019-12-03', '2020-06-06', 'PT Universal Indofood Product');
 
 -- --------------------------------------------------------
 
@@ -74,7 +80,10 @@ INSERT INTO `distributor` (`kode_dist`, `nama_distributor`, `alamat`) VALUES
 (3, 'PT. Indah Lestari', 'Bandung'),
 (4, 'PT. Medan Jaya', 'Medan'),
 (5, 'PT. Kita Bisa', 'Deli Serdang'),
-(6, 'PT.Kerta Jaya', 'Aceh');
+(6, 'PT.Kerta Jaya', 'Aceh'),
+(7, 'PT Paragon Technology & Innovation Industri', 'Tangerang'),
+(8, 'PT Staedtler Indonesia', 'Jakarta Utara'),
+(9, 'PT Universal Indofood Product', 'Medan');
 
 -- --------------------------------------------------------
 
@@ -84,7 +93,7 @@ INSERT INTO `distributor` (`kode_dist`, `nama_distributor`, `alamat`) VALUES
 --
 CREATE TABLE `expired` (
 `kode_barang` int(11)
-,`nama_barang` varchar(30)
+,`nama_barang` varchar(100)
 ,`tanggal_exp` date
 );
 
@@ -107,8 +116,9 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 (1, 'Makanan'),
 (2, 'Minuman'),
 (3, 'Popok'),
-(4, 'Barang'),
-(5, 'Susu');
+(4, 'Peralatan Cuci'),
+(5, 'Alat Tulis'),
+(6, 'Kosmetik');
 
 -- --------------------------------------------------------
 
@@ -181,7 +191,10 @@ INSERT INTO `transaksi_detail` (`kode_transaksi`, `kode_barang`, `harga`, `total
 (1906040001, 3, 5000, 2, 10000, '2019-06-04 10:34:12'),
 (1906040002, 4, 4600, 4, 18400, '2019-06-04 10:44:04'),
 (1906060001, 1, 56000, 2, 2, '2019-06-06 11:09:12'),
-(1906060001, 1, 56000, 3, 168000, '2019-06-06 11:09:47');
+(1906060001, 1, 56000, 3, 168000, '2019-06-06 11:09:47'),
+(1906170001, 13, 8000, 3, 24000, '2019-06-17 02:09:40'),
+(1906170001, 13, 8000, 3, 24000, '2019-06-17 02:09:42'),
+(1906170001, 13, 8000, 3, 24000, '2019-06-17 02:09:45');
 
 -- --------------------------------------------------------
 
@@ -235,13 +248,13 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `kode_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `kode_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `distributor`
 --
 ALTER TABLE `distributor`
-  MODIFY `kode_dist` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `kode_dist` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
