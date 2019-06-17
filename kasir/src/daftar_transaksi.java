@@ -24,11 +24,9 @@ public class daftar_transaksi extends javax.swing.JFrame {
         //membuat tampilan model tabel
        DefaultTableModel model = new DefaultTableModel();
        model.addColumn("KODE TRANSAKSI");
-       model.addColumn("KODE BARANG");
-       model.addColumn("HARGA");
-       model.addColumn("TOTAL BARANG");
-       model.addColumn("TOTAL");
        model.addColumn("TANGGAL");
+       model.addColumn("ID PEGAWAI");
+       model.addColumn("TOTAL TRANSAKSI");
        
         //menampilkan data dari database
        try {
@@ -38,10 +36,10 @@ public class daftar_transaksi extends javax.swing.JFrame {
             java.sql.ResultSet res=stm.executeQuery(sql);
             while(res.next()){
                 model.addRow(new Object[]{
-                    res.getString(0),
-                    res.getString(1),
-                    res.getString(2),
-                    res.getString(3),
+                    res.getInt(1),
+                    res.getDate(2),
+                    res.getInt(3),
+                    res.getInt(4),
                 });
             }
             tabel_transaksi.setModel(model);
