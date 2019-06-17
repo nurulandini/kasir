@@ -32,18 +32,16 @@ public class daftar_transaksi extends javax.swing.JFrame {
        
         //menampilkan data dari database
        try {
-            String sql = "select * from transaksi_detail";
+            String sql = "select * from transaksi";
             java.sql.Connection conn=(Connection)config.configDB();
             java.sql.Statement stm=conn.createStatement();
             java.sql.ResultSet res=stm.executeQuery(sql);
             while(res.next()){
                 model.addRow(new Object[]{
-                    res.getInt(1),
-                    res.getInt(2),
-                    res.getInt(3),
-                    res.getInt(4),
-                    res.getInt(5),
-                    res.getDate(6),
+                    res.getString(0),
+                    res.getString(1),
+                    res.getString(2),
+                    res.getString(3),
                 });
             }
             tabel_transaksi.setModel(model);
@@ -76,12 +74,6 @@ public class daftar_transaksi extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        cari = new javax.swing.JComboBox<>();
-        tgl_hari = new javax.swing.JComboBox<>();
-        bln_hari = new javax.swing.JComboBox<>();
-        thn_hari = new javax.swing.JComboBox<>();
-        btnCari = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabel_transaksi = new javax.swing.JTable();
 
@@ -234,39 +226,6 @@ public class daftar_transaksi extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("DAFTAR TRANSAKSI");
 
-        jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jLabel2.setText("Cari Berdasarkan :");
-
-        cari.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        cari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih", "Hari", "Bulan", "Tahun" }));
-        cari.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cariActionPerformed(evt);
-            }
-        });
-
-        tgl_hari.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        tgl_hari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tanggal", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-        tgl_hari.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tgl_hariActionPerformed(evt);
-            }
-        });
-
-        bln_hari.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        bln_hari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bulan", "Januari", "Februari", "Maret ", "April", "Mei ", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember" }));
-
-        thn_hari.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        thn_hari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tahun", "2017", "2018", "2019" }));
-
-        btnCari.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnCari.setText("Cari");
-        btnCari.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCariActionPerformed(evt);
-            }
-        });
-
         tabel_transaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -324,21 +283,7 @@ public class daftar_transaksi extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(tgl_hari, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(bln_hari, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(thn_hari, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(btnCari))))))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel1)
@@ -354,17 +299,7 @@ public class daftar_transaksi extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tgl_hari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bln_hari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(thn_hari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCari))
-                        .addGap(39, 39, 39)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21))))
         );
@@ -386,53 +321,11 @@ public class daftar_transaksi extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed
-    int pilih;
-    pilih = cari.getSelectedIndex();
-    if(cari.getSelectedIndex()==0)
-    {
-        tgl_hari.setVisible(false);
-        bln_hari.setVisible(false);
-        thn_hari.setVisible(false);
-    }
-    
-    else if(cari.getSelectedIndex()==1)
-    {
-        tgl_hari.setVisible(true);
-        bln_hari.setVisible(true);
-        thn_hari.setVisible(true);
-    }
-    else if(cari.getSelectedIndex()==2)
-    {
-        tgl_hari.setVisible(false);
-        bln_hari.setVisible(true);
-        thn_hari.setVisible(true);
-    }
-    else if(cari.getSelectedIndex()==3)
-    {
-        thn_hari.setVisible(true);
-        tgl_hari.setVisible(false);
-        bln_hari.setVisible(false);
-    }
-    
-// TODO add your handling code here:
-    }//GEN-LAST:event_cariActionPerformed
-
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        tgl_hari.setVisible(false);
-        bln_hari.setVisible(false);
-        thn_hari.setVisible(false);
+        
         
     }//GEN-LAST:event_formWindowActivated
-
-    private void tgl_hariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tgl_hariActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tgl_hariActionPerformed
-
-    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCariActionPerformed
 
     private void daftar_barangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daftar_barangActionPerformed
         // TODO add your handling code here:
@@ -513,15 +406,11 @@ public class daftar_transaksi extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Transaksi;
-    private javax.swing.JComboBox<String> bln_hari;
-    private javax.swing.JToggleButton btnCari;
-    private javax.swing.JComboBox<String> cari;
     private javax.swing.JButton daftar_barang;
     private javax.swing.JButton exp;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
@@ -531,7 +420,5 @@ public class daftar_transaksi extends javax.swing.JFrame {
     private javax.swing.JButton kasir;
     private javax.swing.JButton pemasok;
     private javax.swing.JTable tabel_transaksi;
-    private javax.swing.JComboBox<String> tgl_hari;
-    private javax.swing.JComboBox<String> thn_hari;
     // End of variables declaration//GEN-END:variables
 }
